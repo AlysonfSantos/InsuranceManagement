@@ -18,11 +18,17 @@ public class MappingProfile : Profile
         CreateMap<InsuranceProposal, InsuranceProposalModel>()
             .ForMember(dest => dest.Status,
                opt => opt.MapFrom(src => StatusExtensions.GetDisplayName(src.Status)))
-            .ForMember(dest => dest.ID, opt => opt.Ignore()); 
+            .ForMember(dest => dest.ID, opt => opt.Ignore());
+
+        CreateMap<ChangeInsuranceProposal, InsuranceProposalModel>()
+            .ForMember(dest => dest.Status,
+               opt => opt.MapFrom(src => StatusExtensions.GetDisplayName(src.Status))); 
     }
 
     private void InfrastructureToDomainMappings()
     {
-        CreateMap<InsuranceProposalModel, InsuranceProposal>();
+        CreateMap<InsuranceProposalModel, InsuranceProposal>()
+            .ForMember(dest => dest.Status,
+           opt => opt.MapFrom(src => StatusExtensions.GetEnumValueFromDisplayNameSafe<StatusType>(src.Status, StatusType.EmAnalise))); ; 
     }
 }

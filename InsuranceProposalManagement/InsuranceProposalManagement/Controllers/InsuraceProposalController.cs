@@ -1,4 +1,5 @@
-﻿using InsuranceProposalManagement.API.Models;
+﻿using Azure.Core;
+using InsuranceProposalManagement.API.Models;
 using InsuranceProposalManagement.Application.Command;
 using InsuranceProposalManagement.Application.Handler;
 using InsuranceProposalManagement.Application.Queries;
@@ -16,38 +17,44 @@ namespace InsuranceProposalManagement.API.Controllers
     public class InsuraceProposalController(IMediator mediator) : ControllerBase
     {
 
-        [HttpPost("meuovo")]
+        [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<GetInsuraceProposalByIdQuery>> meuovo(GetProposalCommand request)
+        public async Task<ActionResult<GetInsuraceProposalByIdQuery>> GetInsuraceProposalById(int id)
         {
-            var result = await mediator.Send(request);
+            var getProposal = new GetProposalByIdCommand { ID = id };
+            var result = await mediator.Send(getProposal);
             
             return Ok(result);
-
         }
 
         // GET api/<InsuraceProposalController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("Get/ListProposal")]
+        public async Task<ActionResult<IEnumerable<GetInsuraceProposalByIdQuery>>> GetistIncuraceProposal()
         {
-            return "value";
+            var result = await mediator.Send(new GetListProposalCommand());
+
+            return Ok(result);
         }
 
         // POST api/<InsuraceProposalController>
-        [HttpPost]
+        [HttpPost("Create")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult> Post([FromBody] CreateProposalCommand value)
+        public async Task<ActionResult<InsuraceProposalResult>>  CreateProposal([FromBody] CreateProposalCommand request)
         {
-            var result = await mediator.Send(value);
+            var result = await mediator.Send(request);
             var resultStatus = result;
 
             return Ok(resultStatus.ResultTypeStatus.ToString());
         }
 
         // PUT api/<InsuraceProposalController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPatch]
+        public async Task<ActionResult<InsuraceProposalResult>> ChangestatusProposal([FromBody] ChangeProposalCommand request)
         {
+            var result = await mediator.Send(request);
+            var resultStatus = result;
+
+            return Ok(resultStatus.ResultTypeStatus.ToString());
         }
 
         // DELETE api/<InsuraceProposalController>/5

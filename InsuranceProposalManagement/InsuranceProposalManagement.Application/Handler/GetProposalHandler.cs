@@ -6,9 +6,9 @@ using MediatR;
 
 namespace InsuranceProposalManagement.Application.Handler;
 
-public class GetProposalHandler(IIsuranceContracRepository repository, IMapper map) : IRequestHandler<GetProposalCommand, GetInsuraceProposalByIdQuery>
+public class GetProposalHandler(IIsuranceContracRepository repository, IMapper map) : IRequestHandler<GetProposalByIdCommand, GetInsuraceProposalByIdQuery>
 {
-    public async Task<GetInsuraceProposalByIdQuery> Handle(GetProposalCommand request, CancellationToken cancellationToken)
+    public async Task<GetInsuraceProposalByIdQuery> Handle(GetProposalByIdCommand request, CancellationToken cancellationToken)
     {
        
         var result = await repository.GetProposalById(request.ID);

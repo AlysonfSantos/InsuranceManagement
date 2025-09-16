@@ -17,6 +17,7 @@ public class MappingProfile : Profile
     private void ApplicationToDomainMappings()
     {
         CreateMap<CreateProposalCommand, InsuranceProposal>();
+        CreateMap<InsuranceProposal, ChangeInsuranceProposal>();
     }
 
     private void DomainToApplicationMappings()

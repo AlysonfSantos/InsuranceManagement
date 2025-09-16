@@ -12,7 +12,7 @@ public class IsuranceProposalConfiguration : IEntityTypeConfiguration<InsuranceP
     {
         builder.ToTable("INSURANCE_PROPOSALS");
 
-        builder.Property(p => p.ID).ValueGeneratedOnAdd();
+        builder.HasKey(p => p.ID);
 
         builder.Property(x => x.ProposalValue).HasColumnName("PROPOSAL_VALUE");
 

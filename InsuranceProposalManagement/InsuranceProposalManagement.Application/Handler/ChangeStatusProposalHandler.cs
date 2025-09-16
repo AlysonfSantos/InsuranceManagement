@@ -2,6 +2,7 @@
 using InsuranceProposalManagement.Application.Command;
 using InsuranceProposalManagement.Domain.Entities;
 using InsuranceProposalManagement.Domain.Interfaces;
+using InsuranceProposalManagement.Domain.Util;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -11,13 +12,16 @@ using System.Threading.Tasks;
 
 namespace InsuranceProposalManagement.Application.Handler;
 
-internal class ChangeStatusProposalHandler(IIsuranceContracRepository repository, IMapper map) : IRequestHandler<CreateProposalCommand, InsuraceProposalResult>
+public class ChangeStatusProposalHandler(IIsuranceContracRepository repository, IMapper map) : IRequestHandler<ChangeProposalCommand, InsuraceProposalResult>
 {
-    public async Task<InsuraceProposalResult> Handle(CreateProposalCommand request, CancellationToken cancellationToken)
+    public async Task<InsuraceProposalResult> Handle(ChangeProposalCommand request, CancellationToken cancellationToken)
     {
+        var getProposal = await repository.GetProposalByIdAndCPF(request.ID, request.CPF);
 
-        var proposal = map.Map<InsuranceProposal>(request);
-        await repository.CreateProposal(proposal);
+        if (getProposal != null)
+               getProposal.Status = request.Status;
+
+        await repository.UpdateProposal(request.ID, request.CPF, request.Status);
 
         return InsuraceProposalResult.InsuraceProposalCreated();
     }

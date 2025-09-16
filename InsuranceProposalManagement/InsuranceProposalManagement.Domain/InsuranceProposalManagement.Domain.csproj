@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Entities\ChangeInsuranceProposal.cs~RF15182409.TMP" />
+  </ItemGroup>
+
 </Project>
