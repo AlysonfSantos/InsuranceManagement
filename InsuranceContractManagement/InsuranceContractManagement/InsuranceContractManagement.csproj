@@ -7,7 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InsuranceContractManagement.Application\InsuranceContractManagement.Application.csproj" />
+    <ProjectReference Include="..\InsuranceContractManagement.Infrastructure\InsuranceContractManagement.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

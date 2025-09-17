@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Common\" />
+    <Folder Include="Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared.Library\Shared.Library\Shared.Library.csproj" />
+    <ProjectReference Include="..\InsuranceContractManagement.Infrastructure\InsuranceContractManagement.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
