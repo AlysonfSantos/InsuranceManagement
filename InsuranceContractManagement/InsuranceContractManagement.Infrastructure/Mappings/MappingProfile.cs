@@ -15,7 +15,7 @@ public class MappingProfile : Profile
     private void DomainToInfrastructureMappings()
     {
         CreateMap<InsuranceContract, InsuranceContractModel>()
-            .ForMember(dest => dest.Id, opt => opt.Ignore());
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
 
     }
 

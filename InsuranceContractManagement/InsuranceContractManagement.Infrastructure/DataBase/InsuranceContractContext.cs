@@ -13,5 +13,5 @@ public class InsuranceContractContext(DbContextOptions<InsuranceContractContext>
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 
-    public virtual DbSet<InsuranceContractModel> InsuranceProposals { get; set; } = null!;
+    public virtual DbSet<InsuranceContractModel> InsuranceContract { get; set; } = null!;
 }
