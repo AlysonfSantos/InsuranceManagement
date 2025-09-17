@@ -14,6 +14,6 @@ public class CreateProposalHandler(IIsuranceContracRepository repository, IMappe
         var proposal = map.Map<InsuranceProposal>(request);
         await repository.CreateProposal(proposal);
 
-        return InsuraceProposalResult.InsuraceProposalCreated();
+        return InsuraceProposalResult.InsuraceProposalCreated(proposal!= null);
     }
 }

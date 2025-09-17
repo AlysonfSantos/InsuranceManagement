@@ -12,17 +12,12 @@ using System.Threading.Tasks;
 
 namespace InsuranceProposalManagement.Application.Handler;
 
-public class ChangeStatusProposalHandler(IIsuranceContracRepository repository, IMapper map) : IRequestHandler<ChangeProposalCommand, InsuraceProposalResult>
+public class ChangeStatusProposalHandler(IIsuranceContracRepository repository) : IRequestHandler<ChangeProposalCommand, InsuraceProposalResult>
 {
     public async Task<InsuraceProposalResult> Handle(ChangeProposalCommand request, CancellationToken cancellationToken)
     {
-        var getProposal = await repository.GetProposalByIdAndCPF(request.ID, request.CPF);
+        var result = await repository.UpdateProposal(request.ID, request.CPF, request.Status);
 
-        if (getProposal != null)
-               getProposal.Status = request.Status;
-
-        await repository.UpdateProposal(request.ID, request.CPF, request.Status);
-
-        return InsuraceProposalResult.InsuraceProposalCreated();
+        return result == false ? InsuraceProposalResult.InsuraceProposalNouFound(result) : InsuraceProposalResult.InsuraceProposalChanged(result);
     }
 }

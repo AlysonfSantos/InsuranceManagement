@@ -49,12 +49,17 @@ namespace InsuranceProposalManagement.API.Controllers
 
         // PUT api/<InsuraceProposalController>/5
         [HttpPatch]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<InsuraceProposalResult>> ChangestatusProposal([FromBody] ChangeProposalCommand request)
         {
             var result = await mediator.Send(request);
-            var resultStatus = result;
+            //var resultStatus = result?.ResultTypeStatus;
+            
+            if(!result.IsValue)
+                return NotFound(result);
 
-            return Ok(resultStatus.ResultTypeStatus.ToString());
+            return Ok(result.ResultTypeStatus.ToString());
         }
 
         // DELETE api/<InsuraceProposalController>/5

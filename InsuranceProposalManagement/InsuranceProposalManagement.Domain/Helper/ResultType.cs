@@ -2,5 +2,7 @@
 
 public enum ResultType
 {
-    InsuranceProposalCreated = 1
+    InsuranceProposalCreated = 1,
+    InsuranceProposalNotFound = 2,
+    InsuranceProposalStatusChanged = 3
 }

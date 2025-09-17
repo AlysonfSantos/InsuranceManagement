@@ -39,11 +39,16 @@ public class IsuranceProposalRepository(InsuranceProposalContext context, IMappe
         return map.Map<IEnumerable<InsuranceProposal>>(model);
     }
 
-    public async Task UpdateProposal(int id, string cpf, StatusType status)
+    public async Task<bool> UpdateProposal(int id, string cpf, StatusType status)
     {
         var model = await context.InsuranceProposals.FirstOrDefaultAsync(x => x.ID == id && x.CPF == cpf);
+
+        if(model is null)
+            return false;
+
         model.Status = StatusExtensions.GetDisplayName(status);
         context.InsuranceProposals.Update(model);
         context.SaveChanges();
+        return true;
     }
 }
