@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\InsuranceProposalManagement\InsuranceProposalManagement.MessageContract\InsuranceProposalManagement.MessageContract.csproj" />
     <ProjectReference Include="..\InsuranceContractManagement.Application\InsuranceContractManagement.Application.csproj" />
     <ProjectReference Include="..\InsuranceContractManagement.Infrastructure\InsuranceContractManagement.Infrastructure.csproj" />
   </ItemGroup>

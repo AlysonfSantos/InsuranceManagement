@@ -37,6 +37,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsuranceContractManagement
 		{8F0F0758-0CA2-4A42-A8C8-0D16BFD34628} = {8F0F0758-0CA2-4A42-A8C8-0D16BFD34628}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsuranceProposalManagement.MessageContract", "InsuranceProposalManagement\InsuranceProposalManagement.MessageContract\InsuranceProposalManagement.MessageContract.csproj", "{701ACFB7-74A7-4C6F-9559-C267C30D60A2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +86,10 @@ Global
 		{C9B0F26B-B1C5-4920-A608-25DCE762D4B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9B0F26B-B1C5-4920-A608-25DCE762D4B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9B0F26B-B1C5-4920-A608-25DCE762D4B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{701ACFB7-74A7-4C6F-9559-C267C30D60A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{701ACFB7-74A7-4C6F-9559-C267C30D60A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{701ACFB7-74A7-4C6F-9559-C267C30D60A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{701ACFB7-74A7-4C6F-9559-C267C30D60A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,6 +106,7 @@ Global
 		{545E852C-D3DE-4A95-A2DB-E628E734578D} = {258C883B-C433-42E0-BACB-3B9FFAFC0D39}
 		{D8A32B2A-12EC-48F8-9559-FCD29489B695} = {258C883B-C433-42E0-BACB-3B9FFAFC0D39}
 		{C9B0F26B-B1C5-4920-A608-25DCE762D4B3} = {258C883B-C433-42E0-BACB-3B9FFAFC0D39}
+		{701ACFB7-74A7-4C6F-9559-C267C30D60A2} = {3F0E5886-9CEA-4657-9E47-423ED57D9A99}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7D09ED10-77C3-4D8F-AC41-CD83344DD0C9}

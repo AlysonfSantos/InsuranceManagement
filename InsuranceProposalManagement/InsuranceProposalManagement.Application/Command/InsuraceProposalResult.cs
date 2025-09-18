@@ -1,4 +1,5 @@
-﻿using InsuranceProposalManagement.Domain.Util;
+﻿using InsuranceProposalManagement.Domain.Entities;
+using InsuranceProposalManagement.Domain.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,22 +11,26 @@ namespace InsuranceProposalManagement.Application.Command;
 
 public record InsuraceProposalResult
 {
-    public bool IsValue { get; set; }
+
+    public InsuranceProposal InsuraceProposal { get; set; }
+    
+    public bool IsUpdateStatus { get; set; }
     public ResultType ResultTypeStatus { get; set; }
 
 
-    public static InsuraceProposalResult InsuraceProposalCreated(bool isValue)
-        => new(true, ResultType.InsuranceProposalCreated);
+    public static InsuraceProposalResult InsuraceProposalCreated(InsuranceProposal insuraceProposal)    
+        => new(insuraceProposal, ResultType.InsuranceProposalCreated, false);
 
-    public static InsuraceProposalResult InsuraceProposalChanged(bool isValue)
-        => new(true, ResultType.InsuranceProposalStatusChanged);
+    public static InsuraceProposalResult InsuraceProposalChanged(InsuranceProposal insuraceProposal, bool isUpdated)
+        => new(insuraceProposal, ResultType.InsuranceProposalStatusChanged, isUpdated);
 
-    public static InsuraceProposalResult InsuraceProposalNouFound(bool isValue)
-        => new(false, ResultType.InsuranceProposalNotFound);
+    public static InsuraceProposalResult InsuraceProposalNouFound()
+        => new(null ,ResultType.InsuranceProposalNotFound, false);
 
-    private InsuraceProposalResult(bool isValue, ResultType result)
-    {
-        IsValue = isValue;
+    private InsuraceProposalResult(InsuranceProposal insuraceProposal, ResultType result, bool isUpdated)
+    { 
+        InsuraceProposal = insuraceProposal;
         ResultTypeStatus = result;
+        IsUpdateStatus = isUpdated;
     }
 }

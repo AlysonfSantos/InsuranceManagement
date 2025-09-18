@@ -18,7 +18,7 @@ namespace InsuranceProposalManagement.API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<GetInsuraceProposalByIdQuery>> GetInsuraceProposalById(int id)
         {
-            var getProposal = new GetProposalByIdCommand { ID = id };
+            var getProposal = new GetProposalByIdQuery { ID = id };
             var result = await mediator.Send(getProposal);
             
             return Ok(result);
@@ -30,7 +30,7 @@ namespace InsuranceProposalManagement.API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<IEnumerable<GetInsuraceProposalByIdQuery>>> GetistIncuraceProposal()
         {
-            var result = await mediator.Send(new GetListProposalCommand());
+            var result = await mediator.Send(new GetListProposalQuery());
 
             return Ok(result);
         }
@@ -55,10 +55,10 @@ namespace InsuranceProposalManagement.API.Controllers
         {
             var result = await mediator.Send(request);
 
-            if(!result.IsValue)
-                return NotFound(result);
+            if(result != null)
+                return Ok(result.ResultTypeStatus.ToString());
 
-            return Ok(result.ResultTypeStatus.ToString());
+            return NotFound(result);
         }
     }
 }

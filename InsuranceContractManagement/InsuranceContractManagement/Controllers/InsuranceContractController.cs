@@ -1,4 +1,5 @@
 ﻿using InsuranceContractManagement.Application.Command;
+using InsuranceContractManagement.Application.Queries;
 using InsuranceContractManagement.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +19,7 @@ public class InsuranceContractController(IMediator mediator) : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<InsuranceContractResult>> GetInsuraceContractById(int id)
     {
-        var getProposal = new GetInsuranceContractCommand { Id = id };
+        var getProposal = new GetInsuranceContractQuery { Id = id };
         var result = await mediator.Send(getProposal);
 
         if(result.Data is null)

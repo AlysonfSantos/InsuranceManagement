@@ -12,11 +12,12 @@ namespace InsuranceProposalManagement.Infrastructure.Repositories;
 public class IsuranceProposalRepository(InsuranceProposalContext context, IMapper map) : IIsuranceContracRepository
 {
 
-    public async Task CreateProposal(InsuranceProposal insuranceProposal)
+    public async Task<InsuranceProposal> CreateProposal(InsuranceProposal insuranceProposal)
     {
         var model = map.Map<InsuranceProposalModel>(insuranceProposal);
         await context.InsuranceProposals.AddAsync(model);
         await context.SaveChangesAsync();
+        return map.Map<InsuranceProposal>(model);
     }
 
     public async Task<InsuranceProposal?> GetProposalById(int id)
@@ -39,16 +40,16 @@ public class IsuranceProposalRepository(InsuranceProposalContext context, IMappe
         return map.Map<IEnumerable<InsuranceProposal>>(model);
     }
 
-    public async Task<bool> UpdateProposal(int id, string cpf, StatusType status)
+    public async Task<InsuranceProposal> UpdateProposal(int id, string cpf, StatusType status)
     {
         var model = await context.InsuranceProposals.FirstOrDefaultAsync(x => x.ID == id && x.CPF == cpf);
 
         if(model is null)
-            return false;
+            return null;
 
         model.Status = StatusExtensions.GetDisplayName(status);
         context.InsuranceProposals.Update(model);
         context.SaveChanges();
-        return true;
+        return map.Map<InsuranceProposal>(model);
     }
 }

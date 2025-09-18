@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using InsuranceContractManagement.Application.Command;
 using InsuranceContractManagement.Application.Queries;
 using InsuranceContractManagement.Domain.Entities;
 
